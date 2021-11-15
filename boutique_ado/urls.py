@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# Importing views from app here:
+from todo.views import say_hello
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Define URL that will trigger say_hello function & return http response
+    # Takes 3 params. 1st url, 2nd function, 3rd name
+    path('hello/', say_hello, name='hello')
 ]
