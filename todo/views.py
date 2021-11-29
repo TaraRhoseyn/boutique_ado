@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # Use item model in views
 from .models import Item
 # Use form 
@@ -22,8 +22,26 @@ def add_item(request):
         if form.is_valid():
             form.save()
             return redirect('get_todo_list')
+    # instance of ItemForm:
     form = ItemForm()
     context = {
         'form': form
     }
     return render(request, 'todo/add_item.html', context)
+
+
+def edit_item(request, item_id):
+    # below method will return object if found based 
+    # on id or a 404 error
+    item = get_object_or_404(Item, id=item_id)
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('get_todo_list')
+    # instance passes current data to form for ease of user editting
+    form = ItemForm(instance=item)
+    context = {
+        'form': form
+    }
+    return render(request, 'todo/edit_item.html', context)

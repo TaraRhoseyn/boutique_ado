@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Item</title>
+    </head>
+    <body>
+        <h1>Edit a Todo Item</h1>
+        <form method="POST">
+            <!-- csrf token added for security when posting info
+            in Django. It'll generate random value to be added
+            as a hidden input when forms submitted.
+            It also confirms where data is coming from,
+            Django will throw error without this when
+            submitting form -->
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <p>
+                    <button type="submit">Update Item</button>
+                </p>
+            </div>
+        </form>
+    </body>
+</html>
