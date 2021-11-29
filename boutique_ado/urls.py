@@ -16,16 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # Importing views from app here:
-from todo.views import get_todo_list, add_item, edit_item
+from todo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Define URL that will trigger say_hello function & return http response
     # Takes 3 params. 1st url, 2nd function, 3rd name
     # Empty string means no url specified
-    path('', get_todo_list, name='get_todo_list'),
-    path('add', add_item, name='add'),
+    path('', views.get_todo_list, name='get_todo_list'),
+    path('add', views.add_item, name='add'),
     # the <> is how data moves from links or forms into 
     # templates and into views which expect it as a param
-    path('edit/<item_id>', edit_item, name='edit')
+    path('edit/<item_id>', views.edit_item, name='edit'),
+    path('toggle/<item_id>', views.toggle_item, name='toggle')
 ]
