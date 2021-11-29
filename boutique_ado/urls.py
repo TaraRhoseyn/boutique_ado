@@ -28,5 +28,6 @@ urlpatterns = [
     # the <> is how data moves from links or forms into 
     # templates and into views which expect it as a param
     path('edit/<item_id>', views.edit_item, name='edit'),
-    path('toggle/<item_id>', views.toggle_item, name='toggle')
+    path('toggle/<item_id>', views.toggle_item, name='toggle'),
+    path('delete/<item_id>', views.delete_item, name='delete')
 ]
